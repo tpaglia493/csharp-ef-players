@@ -11,13 +11,14 @@ namespace csharp_ef_players
     {
         //PROPERTIES
         [Key]
-        public int Id {  get; set; }
+        public int Id { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(50)]
         public string Surname { get; set; }
 
-        public byte Score { get; set; }
+        public double Score { get; set; }
+       
         public ushort NumberOfPlayedMatches { get; set; }
         public ushort NumberOfVictories { get; set; }
 
@@ -27,6 +28,10 @@ namespace csharp_ef_players
         {
             Name = name;
             Surname = surname;
+            Score = 0;
+            NumberOfPlayedMatches = 0;
+            NumberOfVictories = 0;
+           
         }
     }
 }

@@ -1,16 +1,15 @@
-﻿using System;
+﻿using csharp_ef_players;
 
 bool go = true;   
 Console.WriteLine("------- MENU -------\n");
 Console.WriteLine("1. Insert a new player");
 Console.WriteLine("2. Insert a team");
-Console.WriteLine("3. Menu");
-Console.WriteLine("4. Esci");
-Console.WriteLine("\n-------------------");
+Console.WriteLine("3. Esci");
+Console.WriteLine("\n-------------------\n");
 while (go) { 
  
 
-    Console.Write("\nChoose an option: ");
+    Console.Write("Choose an option: ");
     int response = int.Parse(Console.ReadLine());
     switch (response) 
     { 
@@ -19,6 +18,26 @@ while (go) {
             string playerName = Console.ReadLine();
             Console.WriteLine("Insert the surname : ");
             string playerSurname = Console.ReadLine();
+            using(SportContext db = new SportContext())
+            {
+                Player newPlayer = new Player(playerName, playerSurname);
+
+                Random random = new Random();
+
+                double randomDecimal = random.NextDouble() * (10 - 1) + 1;
+                newPlayer.Score = randomDecimal;
+
+            
+                ushort randomNumberOfMatches = (ushort)random.Next(1, 101);
+                newPlayer.NumberOfPlayedMatches = randomNumberOfMatches;
+
+                Random randomNumberOfVicotriesGenerator = new Random();
+                ushort randomNumberOfVicories = (ushort)random.Next(1, randomNumberOfMatches);
+
+
+                db.Add(newPlayer);
+                db.SaveChanges();
+            }
             break;
 
         case 2:
@@ -26,16 +45,7 @@ while (go) {
             break;
 
         case 3:
-            Console.WriteLine("------- MENU -------\n");
-            Console.WriteLine("1. Insert a new player");
-            Console.WriteLine("2. Insert a team");
-            Console.WriteLine("3. Menu");
-            Console.WriteLine("4. Esci");
-            Console.WriteLine("\n-------------------\n");
-            break;
-
-        case 4:
-            Console.WriteLine("thank you and goodbye");
+            Console.WriteLine("Thank you and goodbye");
             go = false;
             break;
 
