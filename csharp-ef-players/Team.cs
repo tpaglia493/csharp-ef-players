@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp_ef_players
 {
-    internal class Team
+    public class Team
     {
         //PROPERTIES
 
