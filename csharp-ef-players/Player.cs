@@ -23,9 +23,8 @@ namespace csharp_ef_players
 
 
         //CONSTRUCTOR
-        public Player(int id, string name, string surname) 
+        public Player(string name, string surname) 
         {
-            Id = id;
             Name = name;
             Surname = surname;
         }
