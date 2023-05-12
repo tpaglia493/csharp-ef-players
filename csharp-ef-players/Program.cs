@@ -5,8 +5,9 @@ Console.WriteLine("------- MENU -------\n");
 Console.WriteLine("0. Exit");
 Console.WriteLine("1. Insert a new player");
 Console.WriteLine("2. Search and print a player by Id");
-Console.WriteLine("3. Search and print a player by its Name and Surname");
+Console.WriteLine("3. Search and print a player by Name and Surname");
 Console.WriteLine("4. Modify player's number of matches and score by player Id");
+Console.WriteLine("5. Remove a player by Id");
 Console.WriteLine("\n-------------------\n");
 while (go) { 
  
@@ -54,7 +55,7 @@ while (go) {
           
             Console.Write("Insert the name of the player you want to search:");
             string playerNameToSearch = Console.ReadLine();
-            Console.Write("Insert the surname of the player you want to search : ");
+            Console.Write("Insert the surname of the player you want to search: ");
             string playerSurnameToSearch = Console.ReadLine();
             using (SportContext db = new SportContext())
             {
@@ -91,6 +92,17 @@ while (go) {
             }
             break;
 
+            case 5:
+            Console.WriteLine("insert the Id of the player you want to remove");
+            int playerIdToRemove = int.Parse(Console.ReadLine());
+            using(SportContext db = new SportContext())
+            {
+                Player playerToRemove = db.Player.Where(p => p.Id == playerIdToRemove).First();
+                db.Player.Remove(playerToRemove);
+                db.SaveChanges() ;
+
+            }
+            break;
         default:
             Console.WriteLine("Non hai inserito un'opzione valida! Ritenta!");
             break;
