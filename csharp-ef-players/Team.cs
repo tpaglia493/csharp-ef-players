@@ -10,7 +10,7 @@ namespace csharp_ef_players
     public class Team
     {
         //PROPERTIES
-        public int Id { get; set; }
+        public int TeamId { get; set; }
         [MaxLength(20)]
         public string Name { get; set; }
         [MaxLength(20)]
@@ -21,6 +21,9 @@ namespace csharp_ef_players
         public string Trainer { get; set; }
         public List<string> Colors { get; set; }
 
+            //RELATION WITH MANY PLAYER OBJECTS
+        public List<Player> Players { get; set; }
+
         //CONSTRUCTOR
         public Team(string name, string city, string trainer, List<string> colors) 
         {
@@ -28,7 +31,16 @@ namespace csharp_ef_players
             City = city;
             Trainer = trainer;
             Colors = colors;
+            Players = new List<Player>();
+        }
 
+        public Team(string name, string city, string trainer, List<string> colors, List<Player> players)
+        {
+            Name = name;
+            City = city;
+            Trainer = trainer;
+            Colors = colors;
+            Players = players;
         }
     }
 }

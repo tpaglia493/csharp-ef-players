@@ -22,6 +22,10 @@ namespace csharp_ef_players
         public int NumberOfPlayedMatches { get; set; }
         public int NumberOfVictories { get; set; }
 
+        //RELATION WITH TEAM
+        public int? TeamId { get; set; }
+        public Team? Team { get; set; }
+
 
         //CONSTRUCTOR
         public Player(string name, string surname, int numberOfPlayedMatches, int numberOfVictories, double score) 
