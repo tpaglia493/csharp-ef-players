@@ -19,19 +19,25 @@ namespace csharp_ef_players
 
         public double Score { get; set; }
        
-        public ushort NumberOfPlayedMatches { get; set; }
-        public ushort NumberOfVictories { get; set; }
+        public int NumberOfPlayedMatches { get; set; }
+        public int NumberOfVictories { get; set; }
 
 
         //CONSTRUCTOR
-        public Player(string name, string surname) 
+        public Player(string name, string surname, int numberOfPlayedMatches, int numberOfVictories, double score) 
         {
             Name = name;
             Surname = surname;
-            Score = 0;
-            NumberOfPlayedMatches = 0;
-            NumberOfVictories = 0;
+            Score = score;
+            NumberOfPlayedMatches = numberOfPlayedMatches;
+            NumberOfVictories = numberOfVictories;
            
+        }
+        //METHODS
+        public override string ToString()
+        {
+            string rapprString = $" - Name:{Name} \n - Surname: {Surname}\n - Score: {Score} \n - Number of Matches: {NumberOfPlayedMatches} \n - Number of Vitctories: {NumberOfVictories}";
+            return rapprString;
         }
     }
 }
