@@ -37,6 +37,17 @@ namespace csharp_ef_players
             NumberOfVictories = numberOfVictories;
            
         }
+        public Player(string name, string surname, int numberOfPlayedMatches, int numberOfVictories, double score, int teamId, Team team)
+        {
+            Name = name;
+            Surname = surname;
+            Score = score;
+            NumberOfPlayedMatches = numberOfPlayedMatches;
+            NumberOfVictories = numberOfVictories;
+            TeamId = teamId;
+            Team = team;
+
+        }
         //METHODS
         public override string ToString()
         {
