@@ -8,6 +8,7 @@ Console.WriteLine("2. Search and print a player by Id");
 Console.WriteLine("3. Search and print a player by Name and Surname");
 Console.WriteLine("4. Modify player's number of matches and score by player Id");
 Console.WriteLine("5. Remove a player by Id");
+Console.WriteLine("6. Insert a new team");
 Console.WriteLine("\n-------------------\n");
 while (go) { 
  
@@ -25,8 +26,13 @@ while (go) {
             string playerName = Console.ReadLine();
             Console.Write("Insert the surname : ");
             string playerSurname = Console.ReadLine();
-            using(SportContext db = new SportContext())
+            Console.Write("Insert the Id of the player's team:");
+            int playerTeamId = int.Parse(Console.ReadLine());
+
+
+            using (SportContext db = new SportContext())
             {
+                if(db.Team.Where(team => team.TeamId == playerTeamId).Any()) { 
                 Random random = new Random();
 
                 double randomScore = random.NextDouble() * (9) + 1;
@@ -34,9 +40,16 @@ while (go) {
                 int randomNumberOfVicories = random.Next(1, randomNumberOfMatches);
                
 
-                Player newPlayer = new Player(playerName, playerSurname, randomNumberOfMatches,randomNumberOfVicories,randomScore);
+                Player newPlayer = new Player(playerName, playerSurname, randomNumberOfMatches,randomNumberOfVicories,randomScore,playerTeamId);
                 db.Add(newPlayer);
                 db.SaveChanges();
+                }
+                else 
+                { 
+                    Console.WriteLine($"There's no team with id #{playerTeamId}");
+                  
+                
+                }
             }
             break;
 
@@ -100,6 +113,24 @@ while (go) {
                 Player playerToRemove = db.Player.Where(p => p.Id == playerIdToRemove).First();
                 db.Player.Remove(playerToRemove);
                 db.SaveChanges() ;
+
+            }
+            break;
+            case 6:
+            Console.Write("Insert the name of the Team: ");
+            string teamName = Console.ReadLine();
+            Console.Write("Insert the city of the Team: ");
+            string teamCity = Console.ReadLine();
+            Console.Write("Insert the colors of the Team: ");
+            string teamColors = Console.ReadLine();
+            Console.Write("Insert the Trainer of the Team: ");
+            string teamTrainer = Console.ReadLine();
+            using(SportContext db = new SportContext())
+            {
+                Team newTeam = new Team(teamName, teamCity, teamTrainer, teamColors);
+
+                db.Add(newTeam); 
+                db.SaveChanges();
 
             }
             break;

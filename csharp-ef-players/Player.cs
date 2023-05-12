@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,21 +24,14 @@ namespace csharp_ef_players
         public int NumberOfVictories { get; set; }
 
         //RELATION WITH TEAM
-        public int? TeamId { get; set; }
-        public Team? Team { get; set; }
+        [Column("TeamNumber")]
+        public int TeamId { get; set; }
+        public Team Team { get; set; }
 
 
         //CONSTRUCTOR
-        public Player(string name, string surname, int numberOfPlayedMatches, int numberOfVictories, double score) 
-        {
-            Name = name;
-            Surname = surname;
-            Score = score;
-            NumberOfPlayedMatches = numberOfPlayedMatches;
-            NumberOfVictories = numberOfVictories;
-           
-        }
-        public Player(string name, string surname, int numberOfPlayedMatches, int numberOfVictories, double score, int teamId, Team team)
+    
+        public Player(string name, string surname, int numberOfPlayedMatches, int numberOfVictories, double score, int teamId)
         {
             Name = name;
             Surname = surname;
@@ -45,7 +39,7 @@ namespace csharp_ef_players
             NumberOfPlayedMatches = numberOfPlayedMatches;
             NumberOfVictories = numberOfVictories;
             TeamId = teamId;
-            Team = team;
+
 
         }
         //METHODS
