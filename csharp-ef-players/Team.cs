@@ -30,7 +30,7 @@ namespace csharp_ef_players
             Name = name;    
             City = city;
             Trainer = trainer;
-            Colors = colors;
+            Colors = new List<string>(colors);
             Players = new List<Player>();
         }
 
@@ -39,8 +39,8 @@ namespace csharp_ef_players
             Name = name;
             City = city;
             Trainer = trainer;
-            Colors = colors;
-            Players = players;
+            Colors = new List<string>(colors);
+            Players = new List<Player>(players);
         }
     }
 }
